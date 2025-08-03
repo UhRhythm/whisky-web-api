@@ -83,3 +83,27 @@ func TestHealthCheck(t *testing.T) {
     assert.Equal(t, 200, w.Code)
     assert.Contains(t, w.Body.String(), "OK")
 }
+func TestDeleteWhisky(t *testing.T) {
+    router := setupRouter()
+    
+    // まず削除対象が存在することを確認
+    w := httptest.NewRecorder()
+    req, _ := http.NewRequest("DELETE", "/whiskies/3", nil)
+    router.ServeHTTP(w, req)
+    
+    assert.Equal(t, 200, w.Code)
+    assert.Contains(t, w.Body.String(), "削除しました")
+}
+
+func TestDeleteWhiskyNotFound(t *testing.T) {
+    router := setupRouter();
+
+    w := httptest.NewRecorder()
+    req, _ := http.NewRequest("DELETE", "/whiskies/999", nil)
+
+    router.ServeHTTP(w, req)
+
+    assert.Equal(t, 404, w.Code)
+
+    assert.Contains(t, w.Body.String(), "見つかりません")
+}
