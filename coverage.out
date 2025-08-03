@@ -1,0 +1,20 @@
+mode: set
+whisky-web-api/main.go:27.34,29.2 1 1
+whisky-web-api/main.go:32.37,36.16 3 1
+whisky-web-api/main.go:36.16,39.3 2 0
+whisky-web-api/main.go:42.2,42.34 1 1
+whisky-web-api/main.go:42.34,43.22 1 1
+whisky-web-api/main.go:43.22,46.4 2 1
+whisky-web-api/main.go:50.2,50.88 1 0
+whisky-web-api/main.go:54.35,57.16 3 0
+whisky-web-api/main.go:57.16,60.3 2 0
+whisky-web-api/main.go:63.2,63.34 1 0
+whisky-web-api/main.go:63.34,64.22 1 0
+whisky-web-api/main.go:64.22,71.4 3 0
+whisky-web-api/main.go:74.2,74.89 1 0
+whisky-web-api/main.go:78.35,81.53 2 1
+whisky-web-api/main.go:81.53,84.3 2 0
+whisky-web-api/main.go:87.2,91.39 3 1
+whisky-web-api/main.go:94.12,101.45 6 0
+whisky-web-api/main.go:101.45,107.3 1 0
+whisky-web-api/main.go:109.2,109.21 1 0
