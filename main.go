@@ -74,6 +74,33 @@ func deleteWhisky(c *gin.Context) {
 	c.JSON(http.StatusNotFound, gin.H{"error" : "ウイスキーが見つかりません"})
 }
 
+func updateWhisky(c *gin.Context) {
+	idParam := c.Param("id")
+	id, err := strconv.Atoi(idParam)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error" :"無効なIDです"})
+		return 
+	}
+
+	var updatedWhisky Whisky
+	if err := c.ShouldBindJSON(&updatedWhisky); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// whiskyを検索して更新
+	for i, whisky := range whiskies {
+		if whisky.ID == id {
+			updatedWhisky.ID = id
+			whiskies[i] = updatedWhisky
+			c.JSON(http.StatusOK, updatedWhisky)
+			return 
+		}
+	}
+
+	c.JSON(http.StatusNotFound, gin.H{"error": "ウイスキーが見つかりません"})
+}
+
 // 新しいウイスキーを追加
 func createWhisky(c *gin.Context) {
 	var newWhisky Whisky
@@ -97,6 +124,7 @@ func main(){
 	router.GET("/whiskies/:id", getWhiskiyByID)
 	// main関数に追加
 	router.POST("/whiskies", createWhisky)
+	router.PUT("/whiskies/:id", updateWhisky)
 	router.DELETE("/whiskies/:id", deleteWhisky)
 	router.GET("/health", func(c *gin.Context) {
 		c.JSON(http.StatusOK,gin.H{
